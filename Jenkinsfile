@@ -1,6 +1,14 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'nodejs-21'
+    }
     stages {
+        stage("Checkout SCM"){
+            steps{
+                git branch: 'main', url: 'https://github.com/mostafaibrahim24/pipeline.git'
+            }
+        }
         stage("Install Dependencies"){
             steps{
                 sh 'npm install'
