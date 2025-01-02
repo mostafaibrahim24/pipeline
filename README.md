@@ -1,4 +1,4 @@
 # Pipeline project
 
-## Continuous Integration
+## Continuous Integration (CI)
 ![](./CI.png)
