@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'nodejs-21'
+        maven 'maven-399'
     }
     stages {
         stage("Checkout SCM"){
@@ -9,26 +9,27 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mostafaibrahim24/pipeline.git'
             }
         }
-        stage("Install Dependencies"){
-            steps{
-                sh 'npm install'
-            }
-        }
         stage("Build"){
             steps{
-                sh './build-check.sh'
+                sh 'mvn clean package'
             }
         }
-        stage("Run Unit Tests"){
+        stage("Run Tests"){
             steps{
-                sh 'npm run test'
+                sh 'mvn test'
             }
         }
-        stage("Code Coverage"){
+        stage("Coverage"){
             steps{
-                sh 'npm run coverage'
+                jacoco( 
+                    execPattern: 'target/*.exec',
+                    classPattern: 'target/classes',
+                    sourcePattern: 'src/main/java',
+                    exclusionPattern: 'src/test*'
+                )
             }
         }
+
 
     }
 }
