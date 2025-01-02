@@ -40,7 +40,7 @@ pipeline {
                 )
             }
         }
-        steps("SAST and Quality checks using Sonarqube"){
+        stage("SAST and Quality checks using Sonarqube"){
             steps{
                 sh '''
                     mvn sonar:sonar -Dsonar.url=https://9000-port-t47xxkn33kiiaaah.labs.kodekloud.com \
