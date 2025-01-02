@@ -3,23 +3,22 @@ pipeline {
     stages {
         stage("Install Dependencies"){
             steps{
-                dir("solar-system-app"){
-                    sh 'npm install'
-                }
+                sh 'npm install'
+            }
+        }
+        stage("Build"){
+            steps{
+                sh './build-check.sh'
             }
         }
         stage("Run Unit Tests"){
             steps{
-                dir("solar-system-app"){
-                    sh 'npm run test'
-                }
+                sh 'npm run test'
             }
         }
         stage("Code Coverage"){
             steps{
-                dir("solar-system-app"){
-                    sh 'npm run coverage'
-                }
+                sh 'npm run coverage'
             }
         }
 
