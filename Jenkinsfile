@@ -16,7 +16,12 @@ pipeline {
         }
         stage("Check Dependencies"){
             steps{
-                dependencyCheck additionalArguments: '', odcInstallation: 'owasp-dc'
+                dependencyCheck additionalArguments: ''' 
+                    -o './'
+                    -s './'
+                    -f 'ALL' 
+                    --prettyPrint''', odcInstallation: 'owasp-dc'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
         stage("Run Tests"){
