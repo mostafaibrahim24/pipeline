@@ -14,6 +14,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage("Check Dependencies"){
+            steps{
+                dependencyCheck additionalArguments: '', odcInstallation: 'owasp-dc'
+            }
+        }
         stage("Run Tests"){
             steps{
                 sh 'mvn test'
@@ -29,6 +34,7 @@ pipeline {
                 )
             }
         }
+        
 
 
     }
