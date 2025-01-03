@@ -1,7 +1,7 @@
 # Pipeline project
 
 ## Continuous Integration (CI)
-![](./CI.png)
+![](./CI-diagram.png)
 > Pipeline implemented using Jenkins
 - Built using maven
 - Checking for secrets using trufflehog
